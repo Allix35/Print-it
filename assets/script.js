@@ -29,11 +29,6 @@ const bannerTagline = document.querySelector('#banner p');
 
 let currentSlide = 0;  
 
-// Functions called for dots and caroussel 
-
-createDots();
-updateCarousel();
-
 // Left arrow 
 
 leftArrow.addEventListener('click', () => {
