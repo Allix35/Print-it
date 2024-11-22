@@ -1,22 +1,10 @@
-// HTML elements 
+// HTML Elements
 
 const slides = [
-    {
-        "image": "slide1.jpg",
-        "tagLine": "Impressions tous formats <span>en boutique et en ligne</span>"
-    },
-    {
-        "image": "slide2.jpg",
-        "tagLine": "Tirages haute définition grand format <span>pour vos bureaux et events</span>"
-    },
-    {
-        "image": "slide3.jpg",
-        "tagLine": "Grand choix de couleurs <span>de CMJN aux pantones</span>"
-    },
-    {
-        "image": "slide4.png",
-        "tagLine": "Autocollants <span>avec découpe laser sur mesure</span>"
-    }
+    { image: "slide1.jpg", tagLine: "Impressions tous formats <span>en boutique et en ligne</span>" },
+    { image: "slide2.jpg", tagLine: "Tirages haute définition grand format <span>pour vos bureaux et events</span>" },
+    { image: "slide3.jpg", tagLine: "Grand choix de couleurs <span>de CMJN aux pantones</span>" },
+    { image: "slide4.png", tagLine: "Autocollants <span>avec découpe laser sur mesure</span>" }
 ];
 
 const leftArrow = document.querySelector('.arrow_left');
@@ -25,57 +13,55 @@ const dotsBanner = document.querySelector('.dots');
 const bannerImg = document.querySelector('.banner-img');
 const bannerTagline = document.querySelector('#banner p');
 
-// First banner 
+// First banner position
 
-let currentSlide = 0;  
+let currentSlide = 0;
 
-// Left arrow 
+// Dots & caroussel initialization
+
+createDots();
+updateCarousel();
+
+// Arrow event listener
 
 leftArrow.addEventListener('click', () => {
-    console.log('Left arrow clicked');
-
-    if (currentSlide === 0) {                  
+    if (currentSlide === 0) { 
         currentSlide = slides.length - 1; 
     } else {
-        currentSlide--;                       
+        currentSlide--; 
     }
     updateCarousel();
     updateDots();
 });
-
-// Right arrow 
 
 rightArrow.addEventListener('click', () => {
-    console.log('Right arrow cliked');
-
-    if (currentSlide === slides.length - 1) {       
+    if (currentSlide === slides.length - 1) {
         currentSlide = 0; 
     } else {
-        currentSlide++;                             
+        currentSlide++; 
     }
     updateCarousel();
     updateDots();
 });
 
-// Dots creation 
+// Dots creation
 
 function createDots() {
-                     
-    slides.forEach((_, index) => {                    
-        const dot = document.createElement('div');    
-        dot.classList.add('dot');              
 
-        if (index === 0) {                
-            dot.classList.add('dot_selected');
-        }
+    dotsBanner.innerHTML = ''; 
 
-        dot.addEventListener('click', () => {     
-            currentSlide = index;                    
+    slides.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        if (index === 0) dot.classList.add('dot_selected'); 
+
+        dot.addEventListener('click', () => {
+            currentSlide = index; 
             updateCarousel();
             updateDots();
         });
 
-        dotsBanner.appendChild(dot);     
+        dotsBanner.appendChild(dot);
     });
 }
 
@@ -84,15 +70,15 @@ function createDots() {
 function updateDots() {
     const dots = document.querySelectorAll('.dot');
     dots.forEach((dot, index) => {
-        
-        dot.classList.toggle('dot_selected', index === currentSlide); 
+        dot.classList.toggle('dot_selected', index === currentSlide);
     });
 }
 
-// Caroussel function image & text 
+// Caroussel update
 
 function updateCarousel() {
-    
-    bannerImg.src = `./assets/images/slideshow/${slides[currentSlide].image}`;   
-    bannerTagline.innerHTML = slides[currentSlide].tagLine; 
+    bannerImg.src = `./assets/images/slideshow/${slides[currentSlide].image}`;
+    bannerTagline.innerHTML = slides[currentSlide].tagLine;
 }
+
+
