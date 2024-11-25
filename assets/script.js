@@ -25,6 +25,7 @@ updateCarousel();
 // Arrow event listener
 
 leftArrow.addEventListener('click', () => {
+    console.log("Right arrow cliked"); 
     if (currentSlide === 0) { 
         currentSlide = slides.length - 1; 
     } else {
@@ -35,6 +36,7 @@ leftArrow.addEventListener('click', () => {
 });
 
 rightArrow.addEventListener('click', () => {
+    console.log("Left arrow cliked"); 
     if (currentSlide === slides.length - 1) {
         currentSlide = 0; 
     } else {
